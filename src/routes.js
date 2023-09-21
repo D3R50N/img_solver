@@ -11,7 +11,8 @@ function url_compose(letters="",length=0){
     
 routes.get("/", async (req, res) => {
     const { letters, length, first } = req.query;
-
+if(!letters&&!length)
+return {error:'Aucune lettre ou taille renseignée };
     const url = url_compose(letters, length);
     const response = await axios.get(url);
     const html = response.data;
@@ -21,7 +22,7 @@ routes.get("/", async (req, res) => {
     var words_list  = a.map((element) => {
         let src = element.querySelector("img").getAttribute('data-src');
         let word = element.querySelector("span").text;
-        console.log(src,word);
+      //  console.log(src,word);
         
         if (src && !src.startsWith("http")) {
             if (src.startsWith("/"))
