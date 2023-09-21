@@ -12,7 +12,7 @@ function url_compose(letters="",length=0){
 routes.get("/", async (req, res) => {
     const { letters, length, first } = req.query;
 if(!letters&&!length)
-return {error:'Aucune lettre ou taille renseignée };
+return {error:'Aucune lettre ou taille renseignée' };
     const url = url_compose(letters, length);
     const response = await axios.get(url);
     const html = response.data;
